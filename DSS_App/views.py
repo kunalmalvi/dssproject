@@ -47,3 +47,14 @@ def fund_transfer(request):
                         return render(request, 'fund_transfer.html', {"msg":"Successfully Transfered","customer_acc":customer_acc,"transfer_amount":transfer_amount})
             else:
                 return render(request,'fund_transfer.html')
+
+def view_transactions(request):
+    customer_obj = Customer.objects.all()
+    transactions_obj = Transactions.objects.all()
+    transactions_list=[]
+    for i in range(len(customer_obj)):
+        if request.user.id == customer_obj[i].user_id:
+            for j in range(len(transactions_obj)):
+                if customer_obj[i].acc_number == transactions_obj[j].sender_acc or transactions_obj[j].receiver_acc
+                    transactions_list.append(transactions_obj[j])
+    print(transactions_list)
