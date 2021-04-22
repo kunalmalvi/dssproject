@@ -56,5 +56,5 @@ def view_transactions(request):
         if request.user.id == customer_obj[i].user_id:
             for j in range(len(transactions_obj)):
                 if customer_obj[i].acc_number == transactions_obj[j].sender_acc or transactions_obj[j].receiver_acc:
-                    transactions_list.append(transactions_obj[j])
+                    transactions_list.append([transactions_obj[j].sender_acc,transactions_obj[j].receiver_acc])
     print(transactions_list)
