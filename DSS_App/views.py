@@ -25,7 +25,7 @@ def fund_transfer(request):
         if request.user.id == customer_obj[i].user_id:
             key=customer_obj[i].c_id
             vs = get_object_or_404(Customer, pk=key)
-            form = CustomerForm(request.POST or None, instance=vc)
+            form = CustomerForm(request.POST or None, instance=vs)
             if form.is_valid():
                 form.save()
             return render(request, 'fund_transfer.html', {'form': form})
