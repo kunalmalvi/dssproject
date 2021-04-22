@@ -32,6 +32,8 @@ def fund_transfer(request):
                 customer_acc = request.POST['customer_acc']
                 transfer_amount = float(request.POST['transfer_amount'])
                 print('------------------2----------------')
+                if senser_balance < transfer_amount:
+                    return render(request,"error1.html")
                 for i in range(len(customer_obj)):
                     if customer_obj[i].acc_number==int(customer_acc):
                         print('------------------3----------------')
@@ -44,7 +46,6 @@ def fund_transfer(request):
                         customer_obj[cust2_key-1].save()
                         customer_obj[key-1].save()
                         Transactions.objects.create(sender_acc=logined_user_acc, receiver_acc=customer_acc, transactions_amount=transfer_amount)
-                        messages.success(request, "Successfully Transferred" )
                         return render(request, 'fund_transfer.html', {"customer_acc":customer_acc,"transfer_amount":transfer_amount})
             else:
                 return render(request,'fund_transfer.html')
