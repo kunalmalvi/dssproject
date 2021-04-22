@@ -12,7 +12,7 @@ def home(request):
 
 def customer_profile(request):
     customer_obj = Customer.objects.all()
-    for i in range(len(Customer_obj)):
+    for i in range(len(customer_obj)):
         if request.user.id == customer_obj[i].user_id:
             key=customer_obj[i].c_id
             vs = get_object_or_404(Customer, pk=key)
