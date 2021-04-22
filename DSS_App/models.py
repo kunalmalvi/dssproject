@@ -21,7 +21,7 @@ class Customer(models.Model):
 
 class Transactions(models.Model):
 	t_id		=	models.AutoField(primary_key=True)
-	sender_acc	=	models.IntegerField(null=False,unique=True)
-	receiver_acc	=	models.IntegerField(null=False,unique=True)
+	sender_acc	=	models.IntegerField(null=False)
+	receiver_acc	=	models.IntegerField(null=False)
 	transactions_amount		=		models.FloatField(null=False,blank=False)
 	transaction_time = models.DateTimeField(auto_now_add=True)
