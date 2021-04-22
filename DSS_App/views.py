@@ -20,9 +20,11 @@ def customer_profile(request):
 
 def fund_transfer(request):
     customer_obj = Customer.objects.all()
+    transactions_obj = Transactions.objects.all()
     for i in range(len(customer_obj)):
         if request.user.id == customer_obj[i].user_id:
             key=customer_obj[i].c_id
+            logined_user_acc = customer_obj[i].acc_number
             sender_balance=customer_obj[key-1].balance
             print('------------------1----------------')
             if request.method == 'POST':
@@ -33,7 +35,6 @@ def fund_transfer(request):
                     if customer_obj[i].acc_number==int(customer_acc):
                         print('------------------3----------------')
                         cust2_key=customer_obj[i].c_id
-                        print(customer_obj[cust2_key-1].balance)
                         receiver_balance=customer_obj[cust2_key-1].balance
                         sender_balance-=transfer_amount
                         receiver_balance+=transfer_amount
@@ -41,6 +42,8 @@ def fund_transfer(request):
                         customer_obj[key-1].balance=sender_balance
                         customer_obj[cust2_key-1].save()
                         customer_obj[key-1].save()
+                        Transactions.objects.create(sender_acc=logined_user_acc, receiver_acc=customer_acc, transactions_amount=transfer_amount)
+
                         return render(request, 'fund_transfer.html', {"msg":"Successfully Transfered","customer_acc":customer_acc,"transfer_amount":transfer_amount})
             else:
                 return render(request,'fund_transfer.html')

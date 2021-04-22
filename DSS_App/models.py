@@ -18,3 +18,10 @@ class Customer(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('customer_profile', kwargs={'pk': self.pk})
+
+class Transactions(models.Model):
+	t_id		=	models.AutoField(primary_key=True)
+	sender_acc	=	models.IntegerField(null=False,unique=True)
+	receiver_acc	=	models.IntegerField(null=False,unique=True)
+	transactions_amount		=		models.FloatField(null=False,blank=False)
+	transaction_time = models.DateTimeField(auto_now_add=True)
