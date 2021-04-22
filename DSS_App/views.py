@@ -19,9 +19,13 @@ def customer_profile(request):
             return render(request, 'customer_profile.html', {'object': vs})
     return render(request, 'profile_not_found.html')
 
-def fund_transfer(request, pk):
-    vs = get_object_or_404(Customer, pk=pk)
-    form = CustomerForm(request.POST or None, instance=vc)
-    if form.is_valid():
-        form.save()
-    return render(request, 'fund_transfer.html', {'form': form})
+def fund_transfer(request):
+    customer_obj = Customer.objects.all()
+    for i in range(len(customer_obj)):
+        if request.user.id == customer_obj[i].user_id:
+            key=customer_obj[i].c_id
+            vs = get_object_or_404(Customer, pk=key)
+            form = CustomerForm(request.POST or None, instance=vc)
+            if form.is_valid():
+                form.save()
+            return render(request, 'fund_transfer.html', {'form': form})
