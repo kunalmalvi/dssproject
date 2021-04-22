@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import *
+from django.contrib import messages
 
 @login_required
 def home(request):
@@ -43,8 +44,8 @@ def fund_transfer(request):
                         customer_obj[cust2_key-1].save()
                         customer_obj[key-1].save()
                         Transactions.objects.create(sender_acc=logined_user_acc, receiver_acc=customer_acc, transactions_amount=transfer_amount)
-
-                        return render(request, 'fund_transfer.html', {"msg":"Successfully Transfered","customer_acc":customer_acc,"transfer_amount":transfer_amount})
+                        messages.success(request, "Successfully Transferred" )
+                        return render(request, 'fund_transfer.html', {"customer_acc":customer_acc,"transfer_amount":transfer_amount})
             else:
                 return render(request,'fund_transfer.html')
 
