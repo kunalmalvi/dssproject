@@ -4,7 +4,7 @@
 <div class="card-header sticky-top">
 <div class="container">
 {% if user.is_staff %}
-<a href="{% url 'viewstudent' %}" class="btn bg-dark text-white">&larr; Back</a>
+<a href="{% url 'home' %}" class="btn bg-dark text-white">&larr; Back</a>
 {% else %}
 <a href="{% url 'home' %}" class="btn bg-dark text-white">Back</a>
 {% endif %}
