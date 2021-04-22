@@ -23,7 +23,7 @@ def fund_transfer(request):
     for i in range(len(customer_obj)):
         if request.user.id == customer_obj[i].user_id:
             key=customer_obj[i].c_id
-            sender_balance=customer_obj[key].balance
+            sender_balance=customer_obj[key-1].balance
             print('------------------1----------------')
             if request.method == 'POST':
                 customer_acc = request.POST['customer_acc']
@@ -33,9 +33,8 @@ def fund_transfer(request):
                     if customer_obj[i].acc_number==int(customer_acc):
                         print('------------------3----------------')
                         cust2_key=customer_obj[i].c_id
-                        print(cust2_key)
-                        print(customer_obj[cust2_key].balance)
-                        receiver_balance=customer_obj[cust2_key].balance
+                        print(customer_obj[cust2_key-1].balance)
+                        receiver_balance=customer_obj[cust2_key-1].balance
 
                         sender_balance-=transfer_amount
                         receiver_balance+=transfer_amount
