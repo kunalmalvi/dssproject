@@ -17,4 +17,4 @@ def customer_profile(request):
             key=customer_obj[i].c_id
             vs = get_object_or_404(Customer, pk=key)
             return render(request, 'customer_profile.html', {'object': vs})
-    # return render(request, 'profile_not_found.html')
+    return render(request, 'profile_not_found.html')

@@ -7,6 +7,7 @@
 <div class="card">
 	<div class="card-header sticky-top bg-light">
     <h3><b>DASHBOARD</b></h3>
+				{% if user.is_staff %}
 				<div class="card-body">
 				    <blockquote class="blockquote mb-0">
 								<div class="row">
@@ -20,13 +21,21 @@
 									<div class="col-sm-3 text-center">
     								<div class="card">
       								<div class="card-body bg-light">
-        								<a href="{% url 'home' %}" class="btn btn-light"><h5>Fund Transfer</h5></a>
+        								<a href="{% url 'home' %}" class="btn btn-light"><h5>FUND TRANSFER</h5></a>
       							  </div>
     								</div>
   							</div>
+								<div class="col-sm-3 text-center">
+									<div class="card">
+										<div class="card-body bg-light">
+											<a href="{% url 'home' %}" class="btn btn-light"><h5>TRANSACTIONS</h5></a>
+										</div>
+									</div>
+							</div>
     					</div>
 						</blockquote>
   				</div>
+					{% endblock %}
 		</div>
 </div>
 
