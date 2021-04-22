@@ -15,6 +15,6 @@ class Customer(models.Model):
 
 	def __str__(self):
 		return self.first_name+" "+self.last_name
-		
+
 	def get_absolute_url(self):
-		return reverse('student_edit', kwargs={'pk': self.pk})
+		return reverse('customer_profile', kwargs={'pk': self.pk})
