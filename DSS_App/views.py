@@ -35,12 +35,12 @@ def fund_transfer(request):
                         cust2_key=customer_obj[i].c_id
                         print(customer_obj[cust2_key-1].balance)
                         receiver_balance=customer_obj[cust2_key-1].balance
-
                         sender_balance-=transfer_amount
                         receiver_balance+=transfer_amount
                         customer_obj[cust2_key-1].balance=receiver_balance
                         customer_obj[key-1].balance=sender_balance
-                        customer_obj.save()
+                        customer_obj[cust2_key-1].save()
+                        customer_obj[key-1].save()
                         return render(request, 'fund_transfer.html', {"msg":"Successfully Transfered","customer_acc":customer_acc,"transfer_amount":transfer_amount})
             else:
                 return render(request,'fund_transfer.html')
