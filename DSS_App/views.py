@@ -18,3 +18,10 @@ def customer_profile(request):
             vs = get_object_or_404(Customer, pk=key)
             return render(request, 'customer_profile.html', {'object': vs})
     return render(request, 'profile_not_found.html')
+
+def fund_transfer(request, pk):
+    vs = get_object_or_404(Customer, pk=pk)
+    form = CustomerForm(request.POST or None, instance=vc)
+    if form.is_valid():
+        form.save()
+    return render(request, 'fund_transfer.html', {'form': form})
