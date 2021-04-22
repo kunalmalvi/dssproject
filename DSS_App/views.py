@@ -8,6 +8,8 @@ from django.contrib import messages
 @login_required
 def home(request):
     title = "Online Fund Transfer"
+    if request.user.is_superuser:
+        return redirect('admin/')
     return render(request, 'index.html')
 
 def customer_profile(request):
