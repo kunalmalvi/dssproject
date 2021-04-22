@@ -32,7 +32,7 @@ def fund_transfer(request):
                 customer_acc = request.POST['customer_acc']
                 transfer_amount = float(request.POST['transfer_amount'])
                 print('------------------2----------------')
-                if senser_balance < transfer_amount:
+                if sender_balance < transfer_amount:
                     return render(request,"error1.html")
                 for i in range(len(customer_obj)):
                     if customer_obj[i].acc_number==int(customer_acc):
