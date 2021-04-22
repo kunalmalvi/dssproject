@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="card-header sticky-top">
+<div class="container">
+<a href="{% url 'home' %}" class="btn bg-dark text-white">&larr; Back</a>
+
+</div>
+</div>
+<br>
+
+<div class="container">
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Transactions Time</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+
+{% for x in transactions_list %}
+
+<tbody>
+    <tr>
+      <td>{{ x[3]}} </td>
+      <td>{{ x.1}}</td>
+
+    </tr>
+
+
+  </tbody>
+  {% empty %}
+        <tr>
+          <td colspan="5">No data</td>
+        </tr>
+
+
+{% endfor %}
+
+</table>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}
