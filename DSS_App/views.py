@@ -33,7 +33,10 @@ def fund_transfer(request):
                     if customer_obj[i].acc_number==int(customer_acc):
                         print('------------------3----------------')
                         cust2_key=customer_obj[i].c_id
+                        print(cust2_key)
+                        print(customer_obj[cust2_key].balance)
                         receiver_balance=customer_obj[cust2_key].balance
+
                         sender_balance-=transfer_amount
                         receiver_balance+=transfer_amount
                         customer_obj[cust2_key].balance=receiver_balance
