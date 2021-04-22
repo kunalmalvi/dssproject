@@ -58,4 +58,5 @@ def view_transactions(request):
                 if customer_obj[i].acc_number == transactions_obj[j].sender_acc or transactions_obj[j].receiver_acc:
                     debit_credit = "Debit" if customer_obj[i].acc_number == transactions_obj[j].sender_acc else "Credit"
                     transactions_list.append([{1:transactions_obj[j].sender_acc,2:transactions_obj[j].receiver_acc,3:transactions_obj[j].transactions_amount,4:transactions_obj[j].transaction_time}])
+    print(transactions_list)
     return render(request, 'view_fund_transfer.html', {"status":debit_credit,"transactions_list":transactions_list})
