@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import *
 
-
 @login_required
 def home(request):
     title = "Online Fund Transfer"
@@ -24,8 +23,10 @@ def fund_transfer(request):
     for i in range(len(customer_obj)):
         if request.user.id == customer_obj[i].user_id:
             key=customer_obj[i].c_id
-            vs = get_object_or_404(Customer, pk=key)
-            form = CustomerForm(request.POST or None, instance=vs)
-            if form.is_valid():
-                form.save()
-            return render(request, 'fund_transfer.html', {'form': form})
+            current_customer_balance=customer_obj[key].balance
+            if request.method == 'POST':
+                customer_acc = request.POST['customer_acc']
+                transfer_amount = float(request.POST['transfer_amount'])
+                return render(request, 'fund_transfer.html', {"msg":"Successfully Transfered","customer_acc":customer_acc,"transfer_amount":transfer_amount})
+            else:
+                return render(request,'fund_transfer.html')
