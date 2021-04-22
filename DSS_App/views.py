@@ -30,7 +30,7 @@ def fund_transfer(request):
                 transfer_amount = float(request.POST['transfer_amount'])
                 print('------------------2----------------')
                 for i in range(len(customer_obj)):
-                    if customer_obj[i].acc_number==customer_acc:
+                    if customer_obj[i].acc_number==int(customer_acc):
                         print('------------------3----------------')
                         cust2_key=customer_obj[i].c_id
                         receiver_balance=customer_obj[cust2_key].balance
